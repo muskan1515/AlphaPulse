@@ -1,0 +1,14 @@
+yfinance
+bs4
+textblob
+uvicorn
+fastapi
+python-dotenv
+pydantic
+nsepython
+pandas
+lxml
+html5lib
+beautifulsoup4
+selenium
+webdriver-manager

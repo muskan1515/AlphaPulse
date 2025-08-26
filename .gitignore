@@ -1,0 +1,52 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pkl
+*.env
+.venv/
+venv/
+ENV/
+env/
+*.sqlite3
+
+# VSCode
+.vscode/
+
+# JetBrains
+.idea/
+
+# macOS
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Build / Output
+dist/
+build/
+coverage/
+*.egg-info/
+*.egg
+
+# Temp files
+*.tmp
+*.swp
+*.swo
+
+# Others
+*.env.local
+.env.production
+.env.development
