@@ -3,14 +3,16 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const session = require('express-session');
+const morgan = require('morgan')
 
-require('./services/auth.service'); // initialize Google strategy
+require('./services/auth.service'); 
 
 const authRoutes = require('./routes/auth');
 const stocksRoutes = require('./routes/stocks');
 
 const app = express();
 
+app.use(morgan('dev'))
 app.use(cors({
   origin: process.env.FRONTEND_URL,
   credentials: true

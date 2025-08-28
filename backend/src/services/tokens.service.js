@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
-const Redis = require('ioredis');
+// const Redis = require('ioredis');
 const UserService = require('./user.service');
 const RefreshToken = require('../models/RefreshToken');
 
-const redis = new Redis(process.env.REDIS_URL);
+// const redis = new Redis(process.env.REDIS_URL);
 
 class TokensService {
   static async generateTokens(user) {
@@ -14,7 +14,7 @@ class TokensService {
     const expiresAt = new Date();
     expiresAt.setDate(expiresAt.getDate() + 7);
     await RefreshToken.create({ userId: user._id, token: refreshToken, expiresAt });
-    await redis.set(`refresh:${refreshToken}`, user._id.toString(), 'EX', 7*24*3600);
+    // await redis.set(`refresh:${refreshToken}`, user._id.toString(), 'EX', 7*24*3600);
 
     return { accessToken, refreshToken };
   }
@@ -28,7 +28,7 @@ class TokensService {
 
   static async revokeRefreshToken(refreshToken) {
     await RefreshToken.deleteOne({ token: refreshToken });
-    await redis.del(`refresh:${refreshToken}`);
+    // await redis.del(`refresh:${refreshToken}`);
   }
 }
 

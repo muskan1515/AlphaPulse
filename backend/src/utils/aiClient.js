@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require("axios")
 
 const aIClient = async (route, data = {}, method = 'POST') => {
   try {
@@ -12,9 +12,10 @@ const aIClient = async (route, data = {}, method = 'POST') => {
     });
     return res.data;
   } catch (err) {
+    console.log({err})
     console.error('AI Client Error:', err.response?.data || err.message);
     throw err;
   }
 };
 
-export default aIClient;
+module.exports = {aIClient}

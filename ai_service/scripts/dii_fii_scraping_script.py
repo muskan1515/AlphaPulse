@@ -7,22 +7,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 import os
 from datetime import datetime
 import time
+import asyncio
 
-def download_chartink_csv():
-    # Generate filename with current date
-    today_str = datetime.now().strftime("%Y-%m-%d")
-    filename = f"thisname_{today_str}.csv"
-
-    # Set download folder
-    download_dir = os.path.join(os.getcwd(), "downloads")
-    os.makedirs(download_dir, exist_ok=True)
-    filepath = os.path.join(download_dir, filename)
-
-    # If file already exists, do nothing
-    if os.path.exists(filepath):
-        print(f"{filename} already exists. Skipping download.")
-        return
-
+def download_chartink_csv_blocking(download_dir, filepath):
+    
     # Chrome options
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
@@ -63,5 +51,20 @@ def download_chartink_csv():
             print("Download failed or timed out.")
     finally:
         driver.quit()
+
+
+async def download_chartink_csv():
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    filename = f"thisname_{today_str}.csv"
+
+    download_dir = os.path.join(os.getcwd(), "downloads")
+    os.makedirs(download_dir, exist_ok=True)
+    filepath = os.path.join(download_dir, filename)
+
+    if os.path.exists(filepath):
+        print(f"{filename} already exists. Skipping download.")
+        return
+
+    return await asyncio.to_thread(download_chartink_csv_blocking,download_dir, filepath)
 
 
