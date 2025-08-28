@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { hideLoader, showLoader } from "@/store/slices/uiSlice";
 import { top_fii_dii_stocks } from "@/apis/stock_generic_view/api.generic_view";
-import { FiiDiiApiResponse, StockData } from "@/apis/stock_generic_view/type.generic_view";
+import {
+  FiiDiiApiResponse,
+  StockData,
+} from "@/apis/stock_generic_view/type.generic_view";
 
 import StockCard from "./StockCard";
 import SectorSection from "./SectorSection";
@@ -54,7 +57,7 @@ const HomePage = () => {
         {/* Stocks Section */}
         <div className="lg:col-span-2">
           <h2 className="text-xl font-semibold mb-4">Top Stocks</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {Object.values(stocks).map((stock) => (
               <StockCard key={stock.symbol} stock={stock} />
             ))}
